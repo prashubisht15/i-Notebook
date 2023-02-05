@@ -1,10 +1,14 @@
 const mongoose = require('mongoose')
-const mongoURI = 'mongodb://localhost:27017/'
-
+const mongoURI = 'mongodb://127.0.0.1:27017/'
+const database = 'iNoteBook'
 mongoose.set("strictQuery", false);
-const connectToMongo = () =>{
-    mongoose.connect(mongoURI,()=>{
+const connectToMongo = async() =>{
+    try{
+        await mongoose.connect(`${mongoURI}${database}`);
         console.log('Connecting to mongoDb successfully')
-    })
+    }
+    catch(err){
+        console.log(err)
+    }
 }
 module.exports = connectToMongo;
